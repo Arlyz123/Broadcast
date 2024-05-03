@@ -1,6 +1,6 @@
 <?php
 
-    $conexion = mysqli_connect("localhost", "root", "7653", "pagina");
+    $conexion = mysqli_connect("localhost", "root", "", "pagina");
 
     /* if($conexion) {
         echo 'conectado';

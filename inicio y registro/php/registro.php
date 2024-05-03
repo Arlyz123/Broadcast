@@ -3,6 +3,9 @@
     include 'conexion.php';
 
     $nombre_completo = $_POST['nombre_completo'];
+    $fecha_nacimiento = $_POST['fecha_nacimiento'];
+    $pais = $_POST['pais'];
+    $genero = $_POST['genero'];
     $correo = $_POST['correo'];
     $usuario = $_POST['usuario'];
     $contrasena = $_POST['contrasena'];
@@ -10,8 +13,8 @@
     $contrasena = hash('sha512', $contrasena);
 
     // insertar los datos en la tabla
-    $query = "INSERT INTO datos(nombre_completo, correo, usuario, contrasena)
-                VALUES('$nombre_completo', '$correo', '$usuario', '$contrasena')"; 
+    $query = "INSERT INTO datos(nombre_completo, fecha_nacimiento, pais, genero, correo, usuario, contrasena)
+            VALUES('$nombre_completo', '$fecha_nacimiento', '$pais', '$genero', '$correo', '$usuario', '$contrasena')";
 
     //verificar que el correo no se repita en la base de datos
     $verificar_correo = mysqli_query($conexion, "SELECT * FROM datos WHERE correo = '$correo' ");

@@ -1,0 +1,50 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.search-bar {
+    background-color: #ccc;
+    padding: 20px;
+    text-align: right;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 250px 760px auto; /* Los dos primeros grids tienen 200px de ancho, el tercero ocupa el resto */
+    grid-auto-rows: auto;
+    gap: 10px;
+    padding: 20px;
+}
+
+.grid-item {
+    padding: 20px;
+    text-align: left;
+}
+
+.grid-PERFIL {
+    background-color: #d09b0a;
+    color: #fff;
+}
+
+.grid-AMIGOS {
+    background-color: #8e12e7;
+    color: #fff;
+}
+
+.grid-FOTO {
+    background-color: #df26ba;
+    color: #fff;
+}
+
+.grid-PUBLICACIONES {
+    background-color: #63df26;
+    color: #fff;
+    grid-column: 1/3;
+}
+
+.grid-CHATS {
+    background-color: #1bb5d7;
+    color: #fff;
+}
