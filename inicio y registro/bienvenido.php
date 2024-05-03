@@ -32,32 +32,6 @@
 </head>
 <body>
 
-
-<table>
-    <tr>
-        <th>nombre_completo</th>
-        <th>fecha_nacimiento</th>
-        <th>pais </th>
-        <th>genero</th>
-        <th>correo</th>
-        <th>usuario</th>
-    </tr>
-    <?php
-    //Mostramos los registros
-    while ($row = $result->fetch_array()) {
-      echo '<tr><td>' . $row["nombre_completo"] . '</td>';
-      echo '<td>' . $row["fecha_nacimiento"] . '</td>';
-      echo '<td>' . $row["pais"] . '</td>';
-      echo '<td>' . $row["genero"] .'</td>';
-      echo '<td>' . $row["correo"] .'</td>';
-      echo '<td>' . $row["usuario"] . '/td</tr>';
-    }
-    $result->free_result();
-    $conexion->close();
-  ?>
-</table>
-
-
     <div class="search-bar">
         <a href="#">Home</a>
         <a href="#">Perfil</a>
@@ -70,12 +44,42 @@
         </div>
 
         <div class="grid-item grid-PERFIL">
-            PERFIL
+        <?php
+            //Mostramos los registros
+            while ($row = $result->fetch_array()) {
+            echo '<tr><td>' . $row["nombre_completo"] . '</td>';
+            echo '<td>' . $row["fecha_nacimiento"] . '</td>';
+            echo '<td>' . $row["pais"] . '</td>';
+            echo '<td>' . $row["genero"] .'</td>';
+            echo '<td>' . $row["correo"] .'</td>';
+            echo '<td>' . $row["usuario"] . '</td></tr>';
+            }
+            $result->free_result();
+            $conexion->close();
+        ?>
         </div>
 
         <div class="grid-item grid-AMIGOS">
-            SOBRE MI
-        </div>
+
+            <div id = "info">
+                    <input type="button" value="edit" id = "edit">
+                </div>
+
+                <h1>Sobre Mi:</h1>
+
+                <div id = "Sobre_Mi_Guardado">
+                </div>
+                <form action = "php/guardado.php" method="post" autocomplete="on">
+                    <div id = "Editado">
+                    </div>
+                </form>
+
+                
+
+                <script src="js/dam.js"></script>
+                <!-- <script mostrar datos> -->
+                <script src="js/sobre_mi.js"> </script> 
+            </div>
 
         <div class="grid-item grid-PUBLICACIONES">
             PUBLICACIONES
