@@ -41,6 +41,8 @@
         
         <div class="grid-item grid-FOTO">
             FOTO
+
+            <img src="photos/perfil (1).png">
         </div>
 
         <div class="grid-item grid-PERFIL">
