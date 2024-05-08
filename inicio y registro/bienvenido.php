@@ -1,6 +1,7 @@
 <!-- este codigo php va despues de agregar la linea 15 en login.php -->
 <?php
     include 'php\conexion.php';
+
     $ssql = "select * from datos";
 
     $result = $conexion->query($ssql);
@@ -16,7 +17,10 @@
         session_destroy();
         die();
     }
-    
+
+    //Session id temporal (para que no de error lo de abajo)
+    $session_id = $_SESSION['usuario'];
+    $session_query = $conexion->query("select * from datos where id = '$session_id'");
 ?>
 
 
@@ -57,7 +61,6 @@
             echo '<td>' . $row["usuario"] . '</td></tr>';
             }
             $result->free_result();
-            $conexion->close();
         ?>
         </div>
 
@@ -85,16 +88,18 @@
 
         <div class="grid-item grid-PUBLICACIONES">
 
-            <form id="photos"   method="POST" enctype="multipart/form-data">
+            Publicaciones
+            <!--Formulario de Html para subir fotos-->
+            <form id="photos"  method="POST"  enctype="multipart/form-data">
 
                 <label class="control-label" for="input01">Imagen:</label>
 
-                <input type="file" name="image" class="font" required>
+                    <input type="file" name="image" class="font" required>
 
-                <br><button type="submit" name="submit" class="btn btn-success"><i class="icon-upload"></i> Subir Foto</button>
+                    <br><button type="submit" name="submit" class="btn btn-success"><i class="icon-upload"></i> Subir Foto</button>
 
             </form>
-
+            <!-- Zona la cual crea los datos de la imagen (temporales) y guardado de datos en la tabla -->
             <?php
             if (isset($_POST['submit'])) {
 
@@ -102,12 +107,13 @@
                 $image_name = addslashes($_FILES['image']['name']);
                 $image_size = getimagesize($_FILES['image']['tmp_name']);
 
+                //Aca recien se mueven los registros ,en los cuales luego se insertan en photos(Tabla), y sus respectivos miembros.
                 move_uploaded_file($_FILES["image"]["tmp_name"], "upload/" . $_FILES["image"]["name"]);
                 $location = "upload/" . $_FILES["image"]["name"];
-                $conn->query("insert into photos (location,member_id) values ('$location','$session_id')");
+                $conexion->query("insert into photos (location,member_id) values ('$location','$session_id')");
                 ?>
                 <script>
-                    window.location = 'photos.php';
+                    window.location = 'bienvenido.php';
                 </script>
                 <?php
             }
@@ -115,15 +121,17 @@
 
             <hr>
             <hr>
+
+            <!--Fallo en la funcion query->fetch() , creo que es por que no hay session_id o porque no es un tipo de dato correcto -->
             <?php
-            $query = $conn->query("select * from photos where member_id='$session_id'");
+            $query = $conexion->query("select * from photos where member_id='$session_id'");
             while($row = $query->fetch()){
                 $id = $row['photos_id'];
                 ?>
                 <div class="col-md-2 col-sm-3 text-center">
                     <img class="photo" src="<?php echo $row['location']; ?>" >
                     <hr>
-                    <a class="btn btn-danger" href="delete_photos.php<?php echo '?id='.$id; ?>"><i class="icon-remove"></i> Eliminar</a>
+                    <a class="btn btn-danger" href="php/delete_photos.php<?php echo '?id='.$id; ?>"><i class="icon-remove"></i> Eliminar</a>
                 </div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
             <?php } ?>
 
