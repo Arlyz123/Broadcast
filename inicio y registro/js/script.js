@@ -10,7 +10,7 @@ var contenedor_login_register = document.querySelector(".contenedor__login-regis
 var caja_trasera_login = document.querySelector(".caja__trasera-login");
 var caja_trasera_register = document.querySelector(".caja__trasera-register");
 
-
+// esta funcion es para que cuadno el tamaño de la pagina cambie todo se muestre bien y los textos no se vean cortados
 function anchoPage(){
 
     if (window.innerWidth > 850){
@@ -26,6 +26,7 @@ function anchoPage(){
     }
 }
 
+// llamamos a la funcion para que no sea necesario que cumpla la funcion anterior
 anchoPage();
 
 

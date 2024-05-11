@@ -109,7 +109,7 @@ btn_editar.addEventListener("click", function(){
     //boton de cancelar
 
     const cancelar = C.create('a', {href: 'javascript:void(0)', innerHTML:
-    'Cancelar X', onclick: function(){C.remove(div_general);}
+    'Cancelar X', id:'search-bar', onclick: function(){C.remove(div_general);}
     });
 
     //boton de guardar 
@@ -124,7 +124,7 @@ btn_editar.addEventListener("click", function(){
     C.append([h2_estudios, h3_institucion, input_institucion], div_estudios);
     //deporte
     C.append([
-        span_futbol, checkbox_futbol, salto_de_linea,
+        span_futbol, checkbox_futbol, salto_de_linea, 
         span_basket, checkbox_basket, salto_de_linea,
         span_voley, checkbox_voley, salto_de_linea,
         span_tenis, checkbox_tenis, salto_de_linea,

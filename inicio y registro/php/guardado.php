@@ -18,12 +18,9 @@ if($_POST['institucion']){
         $Institucion.= $Insti;
     } 
 
-
-
     foreach($_POST['futbol'] as $fut){
         $Futbol.= $fut;
     } 
-
 
     foreach($_POST['basket'] as $bas){
         $Basket.= $bas;
@@ -40,7 +37,6 @@ if($_POST['institucion']){
     foreach($_POST['natacion'] as $nat){
         $Natacion.= $nat;
     }  
-
 
     foreach($_POST['otro_deporte'] as $otro){
         $Otro_deporte.= $otro;
@@ -67,12 +63,8 @@ Pelicula_Fav = '$Pelicula_fav', Cancion_Fav = '$Cancion_fav', Estado = '$Estado_
 mysqli_query($conex, $consulta_sql);
 
 
-header("Location: ../index.php");
+header("Location: ../bienvenido.php");
 
 }
 
 ?>
-
-
-
-

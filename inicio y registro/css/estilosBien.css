@@ -2,22 +2,37 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-image: url('photos/bb.jpeg');
+    background-color: #ab2a3e;
     background-size: cover;
 }
 
 .search-bar {
     background: linear-gradient(to top, #17274d 0%, #2e3c64 100%);
     padding: 20px;
+    padding-top: 10px;
+    padding-bottom: 0px;
     text-align: right;
+}
+
+.search-bar a {
+    vertical-align: super;
+    color: #fff;
+}
+.search-bar a:hover {
+    color: #fff;
+}
+.logo {
+    display: grid;
+    width: 200px;
+    height: 71px;
 }
 
 .grid-container {
     display: grid;
-    grid-template-columns: 250px 760px auto; /* Los dos primeros grids tienen 200px de ancho, el tercero ocupa el resto */
-    grid-auto-rows: auto;
+    grid-template-columns: 250px auto auto; /* Columnas definidas */
+    grid-template-rows: auto 500px;
     gap: 10px;
-    padding: 20px;
+    padding: 20px;  
 }
 
 .grid-item {
@@ -29,29 +44,51 @@ body {
     background-color: #2e3c64;
     color: #fff;
     background: linear-gradient(to top, #17274d 0%, #2e3c64 100%);
+    /* width: 715px; Ancho del perfil */
+    height: 205px; 
 }
 
 .grid-SOBRE_MI {
     background-color: #2e3c64;
     color: #fff;
     background: linear-gradient(to top, #17274d 0%, #2e3c64 100%);
+    /* width: 400px; Ancho de "Sobre mí" */
+    /* height: auto; Alto de "Sobre mí" */
 }
 
 .grid-FOTO {
-    background-color: #6086e0;
+    background-color: #2e3c64;
     color: #fff;
     background: linear-gradient(to top, #17274d 0%, #2e3c64 100%);
+    width: 205px; /* Ancho del grid */
+    height: 205px;
 }
+.foto-perfil {
+    width: 205px;
+    height: 205px;
+}
+
 
 .grid-PUBLICACIONES {
     background-color: #2e3c64;
     color: #fff;
-    grid-column: 1/3;
     background: linear-gradient(to top, #17274d 0%, #2e3c64 100%);
+    grid-column: 1/3;
+    grid-row: 2/4;
+    /* width: 975px; /* Ancho de publicaciones */
+    /* height: auto; Alto de publicaciones  */
+}
+.photo {
+    width: 800px;
+    height: 800px;
+    margin-left: 260px;
 }
 
 .grid-AMIGOS {
     background-color: #2e3c64;
     color: #fff;
     background: linear-gradient(to top, #17274d 0%, #2e3c64 100%);
+
+    grid-column: 3; /* Ocupa la tercera columna */
+    grid-row: 2; /* Ocupa la tercera fila */
 }
