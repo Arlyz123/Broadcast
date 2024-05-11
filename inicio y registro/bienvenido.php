@@ -2,6 +2,7 @@
 <?php
 
     include 'php\conexion.php';
+    include 'php\subida_fotos.php';
 
     $ssql = "select * from datos";
 
@@ -89,10 +90,9 @@
             </div>
 
         <div class="grid-item grid-PUBLICACIONES">
-            <div class = "Subida de imagen">
             <h1>Publicaciones</h1>
 
-            <class = "Subida_Imagen">
+            <div class = "Subida_de_imagen">
             <!--Formulario de Html para subir fotos-->
             <form id="photos"  method="POST"  enctype="multipart/form-data">
 
@@ -103,21 +103,14 @@
                     <br><button type="submit" name="submit" class="btn btn-success"><i class="icon-upload"></i> Subir Foto</button>
 
             </form>
-            <!-- Zona la cual crea los datos de la imagen (temporales) y guardado de datos en la tabla -->
+
+            <!-- Zona a la cual llama a la funcion Subir_imagenes (declarada en subida_fotos)-->
             <?php
             if (isset($_POST['submit'])) {
 
-                //Sube el archivo a la carpeta upload y le cambia el nombre a la fecha de subida
                 $_FILES['image']['tmp_name'];
-                $nombre = "image".date("YmdHis");
-                copy($_FILES['image']['tmp_name'], "upload/$nombre.jpg");
-                //Zona para subir la locacion del archivo junto al id de sesion actual
-                $location = "upload/$nombre.jpg";
-                $conexion->query("insert into photos (location,member_id) values ($location,$session_id)");
+                Subir_imagenes($session_id);
 
-                //Posteriori implementation
-                //$Fecha= "image".date("Ymd");
-                //$conexion->query('INSERT INTO photos (Fecha_P) values ( $Fecha )')
                 ?>
                 <script>
                     window.location = 'bienvenido.php';
@@ -130,21 +123,14 @@
             <hr>
             </div>
 
-
             <div class = "Carga_imagen">
-            <!--Falta de ajuste de las imagenes-->
+            <!--Carga de imagenes (sin ajustar), con llamamiento a la funcion Cargar_imagenes
+                declarada en el archivo subida_fotos-->
             <?php
-            //Para acceder a la tabla de photos y cargar las imagenes
-            $var_1 = $conexion->query("select * from photos");
-            while( ($row = $var_1->fetch_assoc()) != false ){
-                $id = $row['photos_id'];
-                ?>
-                <div class="col-md-2 col-sm-3 text-center">
-                    <img class="photo" src="<?php echo $row['location']; ?>">
-                    <hr>
-                    <a class="btn btn-danger" href="php/delete_photos.php<?php echo '?id='.$id; ?>"><i class="icon-remove"></i> Eliminar</a>
-                </div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-            <?php } ?>
+
+            Cargar_imagenes();
+
+            ?>
             </div>
 
         </div>
