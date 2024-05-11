@@ -1,5 +1,6 @@
 <!-- este codigo php va despues de agregar la linea 15 en login.php -->
 <?php
+
     include 'php\conexion.php';
 
     $ssql = "select * from datos";
@@ -21,7 +22,8 @@
     //Session id temporal (para que no de error lo de abajo)
     $session_id = $_SESSION['usuario'];
     $session_query = $conexion->query("select * from datos where id = '$session_id'");
-?>
+
+    ?>
 
 
 
@@ -87,8 +89,10 @@
             </div>
 
         <div class="grid-item grid-PUBLICACIONES">
+            <div class = "Subida de imagen">
+            <h1>Publicaciones</h1>
 
-            Publicaciones
+            <class = "Subida_Imagen">
             <!--Formulario de Html para subir fotos-->
             <form id="photos"  method="POST"  enctype="multipart/form-data">
 
@@ -103,14 +107,17 @@
             <?php
             if (isset($_POST['submit'])) {
 
-                $image = addslashes(file_get_contents($_FILES['image']['tmp_name']));
-                $image_name = addslashes($_FILES['image']['name']);
-                $image_size = getimagesize($_FILES['image']['tmp_name']);
+                //Sube el archivo a la carpeta upload y le cambia el nombre a la fecha de subida
+                $_FILES['image']['tmp_name'];
+                $nombre = "image".date("YmdHis");
+                copy($_FILES['image']['tmp_name'], "upload/$nombre.jpg");
+                //Zona para subir la locacion del archivo junto al id de sesion actual
+                $location = "upload/$nombre.jpg";
+                $conexion->query("insert into photos (location,member_id) values ($location,$session_id)");
 
-                //Aca recien se mueven los registros ,en los cuales luego se insertan en photos(Tabla), y sus respectivos miembros.
-                move_uploaded_file($_FILES["image"]["tmp_name"], "upload/" . $_FILES["image"]["name"]);
-                $location = "upload/" . $_FILES["image"]["name"];
-                $conexion->query("insert into photos (location,member_id) values ('$location','$session_id')");
+                //Posteriori implementation
+                //$Fecha= "image".date("Ymd");
+                //$conexion->query('INSERT INTO photos (Fecha_P) values ( $Fecha )')
                 ?>
                 <script>
                     window.location = 'bienvenido.php';
@@ -121,21 +128,27 @@
 
             <hr>
             <hr>
+            </div>
 
-            <!--Fallo en la funcion query->fetch() , creo que es por que no hay session_id o porque no es un tipo de dato correcto -->
+
+            <div class = "Carga_imagen">
+            <!--Falta de ajuste de las imagenes-->
             <?php
-            $query = $conexion->query("select * from photos where member_id='$session_id'");
-            while($row = $query->fetch()){
+            //Para acceder a la tabla de photos y cargar las imagenes
+            $var_1 = $conexion->query("select * from photos");
+            while( ($row = $var_1->fetch_assoc()) != false ){
                 $id = $row['photos_id'];
                 ?>
                 <div class="col-md-2 col-sm-3 text-center">
-                    <img class="photo" src="<?php echo $row['location']; ?>" >
+                    <img class="photo" src="<?php echo $row['location']; ?>">
                     <hr>
                     <a class="btn btn-danger" href="php/delete_photos.php<?php echo '?id='.$id; ?>"><i class="icon-remove"></i> Eliminar</a>
                 </div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
             <?php } ?>
+            </div>
 
         </div>
+
 
         <div class="grid-item grid-CHATS">
             AMIGOS

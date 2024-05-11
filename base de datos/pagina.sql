@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: May 08, 2024 at 05:13 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 11-05-2024 a las 03:42:21
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `pagina`
+-- Base de datos: `pagina`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `amigos`
+-- Estructura de tabla para la tabla `amigos`
 --
 
 CREATE TABLE `amigos` (
@@ -35,7 +35,7 @@ CREATE TABLE `amigos` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `datos`
+-- Estructura de tabla para la tabla `datos`
 --
 
 CREATE TABLE `datos` (
@@ -50,18 +50,19 @@ CREATE TABLE `datos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `datos`
+-- Volcado de datos para la tabla `datos`
 --
 
 INSERT INTO `datos` (`id`, `nombre_completo`, `fecha_nacimiento`, `pais`, `genero`, `correo`, `usuario`, `contrasena`) VALUES
 (17, 'neymi', '2004-10-30', 'peru', 'femenino', 'arlyzvalencia@gmail.com', 'neyliz', '3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2'),
 (20, 'Jose Miguel Mateo', '2006-02-13', 'peru', 'masculino', 'jmm.valdivia.castillo@ucsp.edu.pe', 'Pochano', '4d3d9a35540f95cb58dbc6f7a734a96b5bb04828bc851b6107aeccc65242d5781e18834a8f9c7222c49129eb0c9a2db056c55f9b1401adda605eea4065b209a3'),
-(21, 'Waza', '2024-05-01', 'peru', 'masculino', 'a@gmail', 'Loco', '05ec85b5d7204e2fd043e348f41935b754181ff256d54aba69762f467347a38107860dc9a14584c3d5e1f7257af5d6139d36a38a1ad1b34d2ac44c4b32fe1128');
+(21, 'Waza', '2024-05-01', 'peru', 'masculino', 'a@gmail', 'Loco', '05ec85b5d7204e2fd043e348f41935b754181ff256d54aba69762f467347a38107860dc9a14584c3d5e1f7257af5d6139d36a38a1ad1b34d2ac44c4b32fe1128'),
+(22, 'Arnol', '2024-05-02', 'peru', 'masculino', 'a4399@gmail', 'Insano', 'c82abe05456455966ebe6f52ce05f1eb4cb495333dd77e5b6d8013a64d3a4716662f67b0e0873d4e30c5c37d30917dfa7cc025d64559433f9cf71bd082fb7d3e');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `photos`
+-- Estructura de tabla para la tabla `photos`
 --
 
 CREATE TABLE `photos` (
@@ -70,17 +71,10 @@ CREATE TABLE `photos` (
   `member_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
---
--- Dumping data for table `photos`
---
-
-INSERT INTO `photos` (`photos_id`, `location`, `member_id`) VALUES
-(9, 'upload/THEownermp.png', 0);
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sobre_mi`
+-- Estructura de tabla para la tabla `sobre_mi`
 --
 
 CREATE TABLE `sobre_mi` (
@@ -98,7 +92,7 @@ CREATE TABLE `sobre_mi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `sobre_mi`
+-- Volcado de datos para la tabla `sobre_mi`
 --
 
 INSERT INTO `sobre_mi` (`id`, `Institucion`, `Futbol`, `Basket`, `Voley`, `Tenis`, `Natacion`, `Otro_Deporte`, `Pelicula_Fav`, `Cancion_Fav`, `Estado`) VALUES
@@ -109,57 +103,57 @@ INSERT INTO `sobre_mi` (`id`, `Institucion`, `Futbol`, `Basket`, `Voley`, `Tenis
 (9, 'fufffj', '', '', '', '', '', '', '', '', '0');
 
 --
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `amigos`
+-- Indices de la tabla `amigos`
 --
 ALTER TABLE `amigos`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `datos`
+-- Indices de la tabla `datos`
 --
 ALTER TABLE `datos`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `photos`
+-- Indices de la tabla `photos`
 --
 ALTER TABLE `photos`
   ADD PRIMARY KEY (`photos_id`);
 
 --
--- Indexes for table `sobre_mi`
+-- Indices de la tabla `sobre_mi`
 --
 ALTER TABLE `sobre_mi`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `amigos`
+-- AUTO_INCREMENT de la tabla `amigos`
 --
 ALTER TABLE `amigos`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `datos`
+-- AUTO_INCREMENT de la tabla `datos`
 --
 ALTER TABLE `datos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
--- AUTO_INCREMENT for table `photos`
+-- AUTO_INCREMENT de la tabla `photos`
 --
 ALTER TABLE `photos`
-  MODIFY `photos_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `photos_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT for table `sobre_mi`
+-- AUTO_INCREMENT de la tabla `sobre_mi`
 --
 ALTER TABLE `sobre_mi`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
